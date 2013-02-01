@@ -1,0 +1,82 @@
+body{
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+	font-size:0.8em;
+	background-color:#A9A9A9;
+	/*#5C5C5C*/
+}
+/* CSS for the demo. CSS needed for the scripts are loaded dynamically by the scripts */
+#mainContainer{
+	width:750px;
+	margin:0 auto;
+	margin-top:30px;
+	border:1px solid #000;
+	background-color:white;
+	padding:2px;
+}
+#leftColumn{
+	width:200px;
+	float:left;
+	margin:2px;
+	height:400px;
+}
+#rightColumn{
+	width:200px;
+	float:right;
+	height:400px;
+}
+#middleColumn{
+	width:258px;
+	float:right;
+	margin:2px;
+	height:400px;
+}
+#trash_can{
+	width:230px;
+	float:left;
+	margin:2px;
+	height:40px;
+	border:1px solid #000;
+	background-color:#2E2E2E;
+	text-align:center;
+	color:white;
+	font-size:35px;
+}
+#shouts{
+	width:230px;
+	float:right;
+	margin:2px;
+	height:40px;
+	border:1px solid #000;
+	background-color:#E2EBED;
+	text-align:center;
+}
+#add_button{
+	position:relative;
+	bottom:18px;
+}
+.dragableBox{
+	width:150px;
+	height:60px;
+	border:1px solid #000;
+	background-color:#76EE00;		
+	margin-bottom:5px;
+	padding:10px;
+	font-weight:bold;
+	text-align:center;
+	overflow:auto;
+}
+.dropBox{
+	width:190px;
+	border:1px solid #000;
+	background-color:#E2EBED;
+	height:380px;
+	margin-bottom:10px;
+	padding:3px;
+	overflow:auto;
+}		
+a{
+	color:#F00;
+}
+.clear{
+	clear:both;
+}

@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>SMS Message Passing Interface[0.8] - sM10</title>		
+<link rel="stylesheet" href="./style/style.css" media="screen" type="text/css">	
+<script type="text/javascript" src="./js/drag-drop-custom.js"></script>
+<script src="./js/script.js"></script>
+</head>
+<body onload="g_login()">
+	<!--Inputs to hold login credentials-->
+	<input type="hidden" id="uname_in" value="0">
+	<input type="hidden" id="pass_in">
+
+	<!--Inputs to hold victim numbers-->
+	<input type="hidden" id="v1_num_in">
+	<input type="hidden" id="v2_num_in">
+	<div id="mainContainer">
+		<div align="center">
+			<h2>
+				SMPI - SMS Message Passing Interface<br>
+				<textarea row="4" cols="35" id="msg_box">Compose and edit messages here...</textarea>
+				<input type="button" size="2" value="+" id="add_button" onclick="add_card(0,1)">
+			</h2>
+				<div id="new_card"><input type="hidden" value="null"></div>
+		</div>
+		<div id="leftColumn">
+			<div id="dropBox" class="dropBox">
+				<p><b><u><div id="v1">Victim #1 Inbox</div></u></b></p>
+				<div id="dropContent2"></div>		
+			</div>
+		</div>
+		<div id="rightColumn">
+			<div id="dropBox2" class="dropBox">
+				<p><b><u><div id="v2">Victim #2 Inbox</div></u></b></p>
+				<div id="dropContent3"></div>		
+			</div>
+		</div>
+		<div id="middleColumn">
+			<p><b><u>Message Queue</u></b></p>
+			<input type="hidden" id="div_count" value="4">
+			<div id="dropContent"></div>
+		</div>
+		<div id="trash_can">TRASH CAN</div>
+		<div id="shouts">
+			<b>Rhodey<br>
+			From back in the days...</b>
+		</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+//Drop actions for specific targets and objects
+function dropItems(idOfDraggedItem,targetId,x,y) {
+	//Dropped in victim 1 inbox
+	if(targetId=='dropBox') {
+		var obj = document.getElementById(idOfDraggedItem);
+		//If from victim 2 or 1 inbox discard
+		if(obj.parentNode.id=='dropContent2' || obj.parentNode.id=='dropContent3')
+			return;
+		//Add to inbox
+		update_sent(1,obj.innerHTML);
+		obj.innerHTML = get_time()+obj.innerHTML;
+		document.getElementById('dropContent2').appendChild(obj);
+	}
+	//Dropped in victim 2 inbox
+	else if(targetId=='dropBox2') {
+		var obj = document.getElementById(idOfDraggedItem);
+		//If from victim 1 or 2 inbox discard
+		if(obj.parentNode.id=='dropContent3' || obj.parentNode.id=='dropContent2')
+			return;
+		//Add to inbox
+		update_sent(3,obj.innerHTML);
+		obj.innerHTML = get_time()+obj.innerHTML;
+		document.getElementById('dropContent3').appendChild(obj);
+	}
+	//Dropped in edit box
+	else if(targetId=='msg_box') {
+		//Add content to text box
+		var obj = document.getElementById(idOfDraggedItem);
+		document.getElementById('msg_box').value = obj.innerHTML;
+		//Append message back to appropriate object
+		if(obj.parentNode.id=='dropContent2')
+			document.getElementById('dropContent2').appendChild(obj);
+		else if(obj.parentNode.id=='dropContent3')
+			document.getElementById('dropContent3').appendChild(obj);
+		else
+			document.getElementById('dropContent').appendChild(obj);
+	}
+	else if(targetId=='trash_can') {
+		var obj = document.getElementById(idOfDraggedItem);
+		try {
+			var obj2 = document.getElementById('DHTMLgoodies_dragableElement'+obj.getAttribute('order'));
+			obj2.parentNode.removeChild(obj2);
+		}
+		catch(err) {}
+		obj.parentNode.removeChild(obj);
+	}
+}
+
+function onDragFunction(cloneId,origId) {
+	self.status = 'Started dragging element with id ' + cloneId;
+	var obj = document.getElementById(cloneId);
+	obj.style.border='1px solid #F00';
+}
+</script>
+</body>
+</html>
