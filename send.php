@@ -1,5 +1,5 @@
 <?php
-include('./Google-Voice-PHP-API/GoogleVoice.php');
+include('GoogleVoice.php');
 
 // Bad request.
 if(empty($_GET['uname']) || empty($_GET['pass']) || empty($_GET['recipients']) || empty($_GET['message']))
