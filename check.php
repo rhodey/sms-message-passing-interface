@@ -1,21 +1,17 @@
 <?php
-include('GoogleVoice.php');
+include('./Google-Voice-PHP-API/GoogleVoice.php');
 
-//Bad request
+// Bad request.
 if(empty($_GET['uname']) || empty($_GET['pass']))
 	exit();
 
-//Get unread SMS
+// Get all unread SMSs from your Google Voice Inbox.
 $gv = new GoogleVoice($_GET['uname'], $_GET['pass']);
-$sms = $gv->getNewSMS();
+$sms = $gv->getUnReadSMS();
 
-//Feed available
-if($sms) {
-	//Echo new message
-	preg_match('/\+1([0-9]{3})([0-9]{3})([0-9]{4})/', $sms[count($sms)-1]['phoneNumber'], $match);
-	echo '('.$match[1].') '.$match[2].'-'.$match[3].': '.$sms[count($sms)-1]['message'];
-
-	//Mark conversation as read
-	$gv->markSMSRead($sms[count($sms)-1]['msgID']);
+// Read all the new messages.
+foreach($sms as $s) {
+	echo $s->phoneNumber.': '.$s->messageText;
+	$gv->markMessageRead($s->id);
 }
 ?>

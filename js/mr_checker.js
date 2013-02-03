@@ -7,7 +7,7 @@ onmessage = function (event) {
 //Check for new messages
 function check_msg(uname, pass) {
 	http = new XMLHttpRequest();
-	http.open('GET','check.php?uname='+uname+'&pass='+pass,false);
+	http.open('GET','../check.php?uname='+uname+'&pass='+pass,false);
 	http.send();
 	//Send response back
 	if(http.responseText != '')

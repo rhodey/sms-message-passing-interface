@@ -1,11 +1,11 @@
 //Web worker (Mr. Checker)
-var mr_checker = new Worker('mr_checker.js');
+var mr_checker = new Worker('./js/mr_checker.js');
 mr_checker.onmessage = function (event) {
 	add_card(1, event.data);
 };
 
 //Web worker (Mr. Sender)
-var mr_sender = new Worker('mr_sender.js');
+var mr_sender = new Worker('./js/mr_sender.js');
 mr_sender.onmessage = function (event) {
 	if(event.data != 1 && event.data != 2 && event.data != 3)
 		alert('Message sending failed!');

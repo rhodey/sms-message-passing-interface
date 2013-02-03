@@ -7,7 +7,7 @@ onmessage = function (event) {
 //Send message to recipients
 function check_msg(num ,uname, pass, recipients, msg) {
 	http = new XMLHttpRequest();
-	http.open('GET','send.php?uname='+uname+'&pass='+pass+'&recipients='+recipients+'&message='+msg,false);
+	http.open('GET','../send.php?uname='+uname+'&pass='+pass+'&recipients='+recipients+'&message='+msg,false);
 	http.send();
 	//Send result back
 	if(http.responseText == 'GOOD')
